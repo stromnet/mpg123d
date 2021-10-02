@@ -1,0 +1,19 @@
+To compile on Linux, just run make
+To compile on FreeBSD, run make -f Makefile.FreeBSD
+
+No installation is currently available, (poor) documentation is located at http://mpg123d.stromnet.org/
+
+Place a mpg123d.conf in /etc, /usr/local/etc, or specify other location with -c parameter.
+
+
+To kill mpg123d, send a SIGINT to it, by either do:
+
+killall -INT mpg123d
+
+or
+
+kill -INT <pidofmpg123d>
+
+
+
+

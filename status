@@ -1,0 +1,57 @@
+#!/usr/bin/perl
+
+$host = "192.168.1.3";
+$port = 3322;
+
+$path="/mnt/mp3-home/johan/dev/mpg123d/mpg123dc";
+
+@data = `$path/mpg123dc -H $host -P $port -w`;
+
+if(@data[0] eq "Stopped")
+{
+	print "mpg123d: Playing nothing";
+}else{
+	#time played (written as %.2f with sprintf, that is, a number with 2 decimals)
+	#time left (written as %.2f with sprintf, that is, a number with 2 decimals)
+	#Artist
+	#Title
+	#Album
+	#Comment
+	#Year
+	#Genre
+	#Frequency
+	#Bitrate
+	
+	chomp(@data[0..9]);
+	
+	$timeplayed=@data[0];
+	$timeleft=@data[1];
+	$timetotal = $timeleft+$timeplayed;	
+	$artist = @data[2];
+	$title = @data[3];
+	$album = @data[4];
+	$comment = @data[5];
+	$year = @data[6];
+	$genre = @data[7];
+	$frequency = @data[8];
+	$bitrate = @data[9];
+	
+	$h = $timeplayed / 3600 ;
+	$timeplayed = $timeplayed % 3600;
+	
+	$m = $timeplayed / 60;
+	$timeplayed = $timeplayed % 60;
+	
+	$timeplayed = sprintf("%dh, %dm, %ds", $h, $m, $timeplayed);
+	
+	$h = $timetotal / 3600 ;
+	$timetotal = $timetotal % 3600;
+	
+	$m = $timetotal / 60;
+	$timetotal = $timetotal % 60;
+	
+	$timetotal = sprintf("%dh, %dm %ds", $h, $m, $timetotal);
+	
+	
+	print "mpg123d: Playing $artist - $title, $timeplayed (of $timetotal) played\n";
+}

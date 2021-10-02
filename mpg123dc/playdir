@@ -1,0 +1,3 @@
+#!/bin/bash
+
+./mpg123dc --clear --adddir "$1" --play

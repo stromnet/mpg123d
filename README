@@ -1,0 +1,11 @@
+mpg123d-beta-0.2
+
+Directory Contents
+
+	mpg123d						The *nix mpg123d daemon
+	mpg123dc						The *nix controller software
+	mpg123dc-lib				The Windows/*nix controller library. Both mpg123dc and the win32 clients uses it
+	win32
+		mpg123d_shellext		The Windows shell extension
+		mpg123dc					The windows controller software
+

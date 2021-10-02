@@ -1,0 +1,49 @@
+To compile on Linux, just run make
+To compile on FreeBSD, run make -f Makefile.FreeBSD
+
+No installation is currently aviable
+
+Place a mpg123dc.conf in /etc, /usr/local/etc, current directory (that is, the one you start mpg123dc from), or specify other location with -C parameter.
+
+Here are all the aviable parameters that mpg123dc takes:
+
+Short      Long            Action
+-------------------------------------------------------------------------
+-D         --debug         Turn on debug mode
+-C <f>     --config <f>    Use file <f> as configuration file
+-H <host>  --host <host>   Server's host/IP
+-P <port>  --port <port>   Server's port number
+-p         --play          Begin play
+-u         --pause         Pauses/Unpauses
+-n         --next          Plays next track
+-r         --prev          Plays prevous track
+-N <n>     --nextx <n>     Goes forward <n> tracks and plays it
+-R <n>     --prevx <n>     Goes back <n> tracks and plays it
+-s         --stop          Stops playing
+-S         --status        Display status
+-w         --raw-status    Display raw status info
+-F         --first         Adds next file/dir to beginning of playlist
+-L         --last          Adds next file/dir to end of playlist (default)
+-f <f>     --addfile <f>   Adds file <f> to playlist
+-d <d>     --adddir <d>    Adds directory <d> to playlist
+-c         --clear         Clear playlist
+-U <f>     --dump <f>      Dump playlist to file <f> which mpg123d have write access to
+-j <pos>   --jump <pos>    Jump to <pos>, or jump +<pos> forward, or -<pos> back
+
+
+When using -w, --raw-status, you will get either 10 rows of data, or 1 row that says "Stopped"
+If you get any data, they containd the following data:
+
+time played (written as %.2f with sprintf, that is, a number with 2 decimals)
+time left (written as %.2f with sprintf, that is, a number with 2 decimals)
+Artist
+Title
+Album
+Comment
+Year
+Genre
+Frequency
+Bitrate
+
+All fields but the timefields, and the genre field, can contaion 30 chars (excluding the \n)
+The UDP protocol uses 10 bytes for the time field, so that should be enough (up to 9999999.99 seconds)

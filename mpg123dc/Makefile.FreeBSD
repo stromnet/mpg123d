@@ -1,0 +1,6 @@
+LIBS=-lgnugetopt
+LIBPATH=-L/usr/local/lib/
+INCLUDE=-I/usr/local/include/
+
+mpg123dc:
+	gcc -O mpg123dc.cpp ../mpg123dc-lib/mpg123dc-lib.cpp $(LIBS) $(INCLUDE) $(LIBPATH) -o mpg123dc

@@ -1,0 +1,36 @@
+# Project: mpg123c
+# Makefile created by Dev-C++ 4.9.7.0
+
+CPP  = g++.exe
+CC   = gcc.exe
+WINDRES = windres.exe
+RES  = mpg123dc_private.res
+OBJ  = mpg123dc.o ../../mpg123dc-lib/mpg123dc-lib.o ../GetOpt.o $(RES)
+LIBS =  -L"C:/Program/Dev-Cpp/lib" -mwindows C:/Program/Dev-Cpp/lib/libws2_32.a
+INCS =  -I"C:/Program/Dev-Cpp/include"  -I"C:/Program/Dev-Cpp/include/g++-3"  -I"C:/Program/Dev-Cpp/include" 
+BIN  = mpg123dc.exe
+CXXFLAGS = $(INCS) 
+CFLAGS = $(INCS) 
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before mpg123dc.exe all-after
+
+
+clean: clean-custom
+	rm -f $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(OBJ) -o "mpg123dc.exe" $(LIBS) $(CXXFLAGS)
+
+mpg123dc.o: mpg123dc.cpp
+	$(CPP) -c mpg123dc.cpp -o mpg123dc.o $(CXXFLAGS)
+
+../../mpg123dc-lib/mpg123dc-lib.o: ../../mpg123dc-lib/mpg123dc-lib.cpp
+	$(CPP) -c ../../mpg123dc-lib/mpg123dc-lib.cpp -o ../../mpg123dc-lib/mpg123dc-lib.o $(CXXFLAGS)
+
+../GetOpt.o: ../GetOpt.cpp
+	$(CPP) -c ../GetOpt.cpp -o ../GetOpt.o $(CXXFLAGS)
+
+mpg123dc_private.res: mpg123dc_private.rc mpg123dc.rc 
+	$(WINDRES) -i mpg123dc_private.rc -I rc -o mpg123dc_private.res -O coff 
